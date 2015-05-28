@@ -12,7 +12,7 @@ config :logger, level: :warn
 # Configure your database
 config :elixir_blog, ElixirBlog.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "nithin",
+  password: "",
   database: "elixir_blog_test",
   size: 1 # Use a single connection for transactional tests
