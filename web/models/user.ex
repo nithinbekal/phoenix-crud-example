@@ -23,4 +23,10 @@ defmodule ElixirBlog.User do
     |> validate_unique(:email, on: ElixirBlog.Repo, downcase: true)
     |> validate_length(:password, min: 8)
   end
+
+  def create_account(changeset) do
+    changeset
+    |> put_change(:crypted_password, changeset.params["password"])
+  end
+
 end
