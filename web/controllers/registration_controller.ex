@@ -10,18 +10,18 @@ defmodule ElixirBlog.RegistrationController do
     render conn, changeset: changeset
   end
 
-  def create(conn, params) do
-    changeset = User.changeset(%User{}, params)
+  def create(conn, %{ "user"=> user_params}) do
+    changeset = User.changeset(%User{}, user_params)
 
     if changeset.valid? do
       new_user = User.create_account(changeset)
       conn
       |> put_flash(:info, "Account created")
-      |> redirect(to: registration_path(conn, :new))
+      |> redirect(to: "/")
     else
       conn
       |> put_flash(:info, "Unable to create account")
-      |> redirect(to: registration_path(conn, :new))
+      |> render("new.html", changeset: changeset)
     end
   end
 end

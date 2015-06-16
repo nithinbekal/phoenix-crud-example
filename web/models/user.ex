@@ -1,6 +1,8 @@
 defmodule ElixirBlog.User do
   use ElixirBlog.Web, :model
 
+  alias ElixirBlog.Repo
+
   schema "users" do
     field :email, :string
     field :crypted_password, :string
@@ -21,12 +23,13 @@ defmodule ElixirBlog.User do
     model
     |> cast(params, @required_fields, @optional_fields)
     |> validate_unique(:email, on: ElixirBlog.Repo, downcase: true)
-    |> validate_length(:password, min: 8)
+    |> validate_length(:password, min: 5)
   end
 
   def create_account(changeset) do
     changeset
     |> put_change(:crypted_password, changeset.params["password"])
+    |> Repo.insert
   end
 
 end
