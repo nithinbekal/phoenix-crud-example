@@ -20,6 +20,9 @@ defmodule ElixirBlog.Router do
 
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
+
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
   end
 
   # Other scopes may use custom stacks.
