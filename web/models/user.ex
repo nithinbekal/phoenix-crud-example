@@ -23,6 +23,7 @@ defmodule ElixirBlog.User do
     model
     |> cast(params, @required_fields, @optional_fields)
     |> validate_unique(:email, on: ElixirBlog.Repo, downcase: true)
+    |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 5)
   end
 
