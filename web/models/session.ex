@@ -6,13 +6,18 @@ defmodule ElixirBlog.Session do
 
   def login(params) do
     user = find_user_by_email(params["email"])
-    case user do
-      nil -> {:error}
-      _   -> {:ok, user}
+    case authenticate(user, params["password"]) do
+      true -> {:ok, user}
+      _    -> {:error}
     end
+  end
+
+  defp authenticate(user, password) do
+    user.crypted_password == password
   end
 
   defp find_user_by_email(email) do
     Repo.get_by(User, email: String.downcase(email))
   end
+
 end
