@@ -15,9 +15,13 @@
     <div class="container" role="main">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+          <%= if logged_in?(@conn) do %>
+            <li><a href="/logout">Logout</a></li>
+          <% else %>
+            <li><%= link('Login', to: '/login') %></li>
+          <% end %>
         </ul>
-        <span class="logo"></span>
+        <h2>Elixir Blog</h2>
       </div>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
