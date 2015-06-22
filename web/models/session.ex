@@ -12,6 +12,18 @@ defmodule ElixirBlog.Session do
     end
   end
 
+  def current_user(conn) do
+    id = Plug.Conn.get_session(conn, :current_user) || 0
+    Repo.get(User, id)
+  end
+
+  def logged_in?(conn) do
+    case current_user(conn) do
+      nil -> false
+      _   -> true
+    end
+  end
+
   defp authenticate(user, password) do
     user.crypted_password == password
   end

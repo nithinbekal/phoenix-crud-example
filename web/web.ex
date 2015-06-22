@@ -48,6 +48,9 @@ defmodule ElixirBlog.Web do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
+
+      # Import authentication related functions
+      import ElixirBlog.Session, only: [current_user: 1, logged_in?: 1]
     end
   end
 
