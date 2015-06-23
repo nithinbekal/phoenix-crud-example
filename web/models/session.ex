@@ -4,6 +4,8 @@ defmodule ElixirBlog.Session do
   alias ElixirBlog.User
   alias ElixirBlog.Repo
 
+  require Logger
+
   def login(params) do
     user = find_user_by_email(params["email"])
     case authenticate(user, params["password"]) do
@@ -25,7 +27,7 @@ defmodule ElixirBlog.Session do
   end
 
   defp authenticate(user, password) do
-    user.crypted_password == password
+    Comeonin.Bcrypt.checkpw(password, user.crypted_password)
   end
 
   defp find_user_by_email(email) do

@@ -5,7 +5,12 @@ defmodule ElixirBlog.Registration do
 
   def create(changeset) do
     changeset
-    |> put_change(:crypted_password, changeset.params["password"])
+    |> put_change(:crypted_password, hashed_password(changeset.params["password"]))
     |> Repo.insert
   end
+
+  defp hashed_password(password) do
+    Comeonin.Bcrypt.hashpwsalt(password)
+  end
+
 end
