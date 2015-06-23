@@ -34,6 +34,7 @@ defmodule ElixirBlog.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 1.0"},
      {:phoenix_live_reload, "~> 0.4", only: :dev},
+     {:comeonin, "~> 1.0"},
      {:cowboy, "~> 1.0"}]
   end
 end
