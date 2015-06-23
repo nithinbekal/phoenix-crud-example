@@ -19,6 +19,7 @@
             <li><a href="/logout">Logout</a></li>
           <% else %>
             <li><%= link("Login", to: "/login") %></li>
+            <li><%= link("Register", to: "/register") %></li>
           <% end %>
         </ul>
         <h2>Elixir Blog</h2>
