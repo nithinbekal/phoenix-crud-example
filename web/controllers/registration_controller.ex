@@ -14,7 +14,7 @@ defmodule ElixirBlog.RegistrationController do
     changeset = User.changeset(%User{}, user_params)
 
     if changeset.valid? do
-      new_user = User.create_account(changeset)
+      Registration.create(changeset)
       conn
       |> put_flash(:info, "Account created")
       |> redirect(to: "/")
@@ -23,5 +23,11 @@ defmodule ElixirBlog.RegistrationController do
       |> put_flash(:info, "Unable to create account")
       |> render("new.html", changeset: changeset)
     end
+  end
+
+  def delete(conn) do
+    delete_session(conn, :current_user)
+    |> put_flash(:info, "Logged out!")
+    |> redirect(to: "/")
   end
 end
