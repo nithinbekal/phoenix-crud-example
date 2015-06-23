@@ -1,6 +1,7 @@
 defmodule ElixirBlog.RegistrationController do
   use ElixirBlog.Web, :controller
 
+  alias ElixirBlog.Registration
   alias ElixirBlog.User
 
   plug :action
@@ -14,7 +15,7 @@ defmodule ElixirBlog.RegistrationController do
     changeset = User.changeset(%User{}, user_params)
 
     if changeset.valid? do
-      new_user = User.create_account(changeset)
+      Registration.create(changeset)
       conn
       |> put_flash(:info, "Account created")
       |> redirect(to: "/")
