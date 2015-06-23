@@ -27,10 +27,4 @@ defmodule ElixirBlog.User do
     |> validate_length(:password, min: 5)
   end
 
-  def create_account(changeset) do
-    changeset
-    |> put_change(:crypted_password, changeset.params["password"])
-    |> Repo.insert
-  end
-
 end
