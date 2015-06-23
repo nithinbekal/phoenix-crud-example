@@ -20,4 +20,11 @@ defmodule ElixirBlog.SessionController do
         |> render("new.html")
     end
   end
+
+  def delete(conn, _) do
+    delete_session(conn, :current_user)
+    |> put_flash(:info, "Logged out!")
+    |> redirect(to: "/")
+  end
+
 end
