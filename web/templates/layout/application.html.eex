@@ -17,7 +17,7 @@
         <ul class="nav nav-pills pull-right">
           <%= if logged_in?(@conn) do %>
             <li><%= current_user(@conn).email %></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><%= link "Logout", to: session_path(@conn, :delete), method: "delete" %></li>
           <% else %>
             <li><%= link("Login", to: "/login") %></li>
             <li><%= link("Register", to: "/register") %></li>
