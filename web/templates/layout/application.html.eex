@@ -16,6 +16,7 @@
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <%= if logged_in?(@conn) do %>
+            <li><%= current_user(@conn).email %></li>
             <li><a href="/logout">Logout</a></li>
           <% else %>
             <li><%= link("Login", to: "/login") %></li>
