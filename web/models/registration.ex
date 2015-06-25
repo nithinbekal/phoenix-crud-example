@@ -1,12 +1,10 @@
 defmodule ElixirBlog.Registration do
   import Ecto.Changeset, only: [put_change: 3]
 
-  alias ElixirBlog.Repo
-
-  def create(changeset) do
+  def create(changeset, repo) do
     changeset
     |> put_change(:crypted_password, hashed_password(changeset.params["password"]))
-    |> Repo.insert
+    |> repo.insert()
   end
 
   defp hashed_password(password) do

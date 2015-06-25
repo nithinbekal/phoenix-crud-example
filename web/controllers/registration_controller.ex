@@ -15,7 +15,7 @@ defmodule ElixirBlog.RegistrationController do
     changeset = User.changeset(%User{}, user_params)
 
     if changeset.valid? do
-      user = Registration.create(changeset)
+      user = Registration.create(changeset, ElixirBlog.Repo)
       conn
       |> put_session(:current_user, user.id)
       |> put_flash(:info, "Account created")
