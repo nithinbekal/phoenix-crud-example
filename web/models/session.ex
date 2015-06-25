@@ -17,12 +17,7 @@ defmodule ElixirBlog.Session do
     Repo.get(User, id)
   end
 
-  def logged_in?(conn) do
-    case current_user(conn) do
-      nil -> false
-      _   -> true
-    end
-  end
+  def logged_in?(conn), do: !!current_user(conn)
 
   defp authenticate(user, password) do
     case user do
