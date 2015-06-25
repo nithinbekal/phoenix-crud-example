@@ -8,7 +8,7 @@ defmodule ElixirBlog.Session do
     user = Repo.get_by(User, email: String.downcase(params["email"]))
     case authenticate(user, params["password"]) do
       true -> {:ok, user}
-      _    -> {:error}
+      _    -> :error
     end
   end
 

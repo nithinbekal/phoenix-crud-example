@@ -14,7 +14,7 @@ defmodule ElixirBlog.SessionController do
         |> put_session(:current_user, user.id)
         |> put_flash(:info, "Logged in!")
         |> redirect(to: "/")
-      {:error} ->
+      :error ->
         conn
         |> put_flash(:info, "Wrong email or password")
         |> render("new.html")
