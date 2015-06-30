@@ -4,7 +4,6 @@ defmodule ElixirBlog.PostController do
   alias ElixirBlog.Post
 
   plug :scrub_params, "post" when action in [:create, :update]
-  plug :action
 
   def index(conn, _params) do
     posts = Repo.all(Post)
